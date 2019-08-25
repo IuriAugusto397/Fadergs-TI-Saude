@@ -38,7 +38,7 @@ public class Arvore {
 				No.lerDados();
 				break;
 			default:
-				System.out.println("Opção inválida!");
+				//System.out.println("Opção inválida!");
 				break;
 			}
 		} while (!(opcao.equals("3")));
