@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class No {
 
-    int valor;
-    String conteudo;
+    int id; // valor nó, com esse valor podemos posicionar o nó na posição correta da árvore
+    String conteudo; // texto a ser exibido
     No esquerda = null; // Apontador para o nó da esquerda
     No direita = null; // Apontador para o nó da direita
     public static No raiz;
@@ -15,11 +15,11 @@ public class No {
     }
 
     public No(int valor) {
-        this.valor = valor;
+        this.id = valor;
     }
 
     public No(int valor, String info) {
-        this.valor = valor;
+        this.id = valor;
         this.conteudo = info;
     }
 
@@ -27,19 +27,19 @@ public class No {
         inserir(raiz, valor, info);
     }
 
+    
+    //Essa função recebe um id e seu conteúdo e organiza sua posição na árvore
     public static void inserir(No node, int valor, String info) {
-        if (node == null) {
-            System.out.println("Raiz: " + valor);
+        if (node == null) {	//inicializa a árvore preenchendo o ID do nó e seu conteúdo
             raiz = new No(valor, info);
         } else {
-            if (valor < node.valor) {
+            if (valor < node.id) { 
                 if (node.esquerda != null) {
                     inserir(node.esquerda, valor, info);
                 } else {
-                    if (node.valor == valor) {
+                    if (node.id == valor) {
                         System.out.println("Nó já inserido!");
                     } else {
-                        System.out.println("Iserindo " + valor + " no nó da esquerda de " + node.valor + "!");
                         node.esquerda = new No(valor, info);
                     }
                 }
@@ -47,11 +47,10 @@ public class No {
                 if (node.direita != null) {
                     inserir(node.direita, valor, info);
                 } else {
-                    if (node.valor == valor) { // checa apenas se o nó atual já
+                    if (node.id == valor) { // checa apenas se o nó atual já
                         // contém o mesmo valor
                         System.out.println("Nó já inserido!");
                     } else {
-                        System.out.println("Iserindo " + valor + " no nó da direita de " + node.valor + "!");
                         node.direita = new No(valor, info);
                     }
                 }
@@ -70,17 +69,17 @@ public class No {
             System.out.println("Raiz: " + valor);
             System.out.println("Digite a Informação");
 
-            //scan.next();
+           
             String info = scan.nextLine();
             raiz = new No(valor, info);
         } else {
-            System.out.println(node.valor + " - " + node.conteudo);
+            System.out.println(node.id + " - " + node.conteudo);
             if (!proximoNo()) {
                 valor = valor / 2;
                 if (node.esquerda != null) {
                     inserirManual(node.esquerda, valor);
                 } else {
-                    if (node.valor == valor) {
+                    if (node.id == valor) {
                         System.out.println("Nó já inserido!");
                     } else {
                         //System.out.println(node.conteudo);
@@ -95,7 +94,7 @@ public class No {
                 if (node.direita != null) {
                     inserirManual(node.direita, valor);
                 } else {
-                    if (node.valor == valor) { // checa apenas se o nó atual já
+                    if (node.id == valor) { // checa apenas se o nó atual já
                         // contém o mesmo valor
                         System.out.println("Nó já inserido!");
                     } else {
@@ -110,24 +109,7 @@ public class No {
         }
     }
 
-    public static boolean procuraNo(No node, int valor) {
-        boolean ret = false;
-        if (node == null) {
-            return ret;
-        } else if (valor == No.raiz.valor) {
-            System.out.println("Valor raiz!");
-            return ret = true;
-        } else if (valor == node.valor) {
-            return ret = true;
-        } else {
-            if (node.valor > valor) {
-                ret = procuraNo(node.esquerda, valor);
-            } else {
-                ret = procuraNo(node.direita, valor);
-            }
-        }
-        return ret;
-    }
+    
 
     public static boolean proximoNo() {
         scan = new Scanner(System.in);
@@ -145,9 +127,12 @@ public class No {
         }
     }
 
+    //função para inicializar o programa
     public static void programa(No node) {
-        if (node.esquerda == null && node.direita == null) {
-            System.out.println("VOCÊ ESCOLHEU O TIME: " + node.conteudo);
+        if (node.esquerda == null && node.direita == null)  // teste se o nó é folha, sendo assim resposta final
+        {
+            System.out.println(node.conteudo);
+            
         } else {
             System.out.println(node.conteudo);
             if (proximoNo()) {
@@ -158,47 +143,5 @@ public class No {
         }
     }
 
-    public static void lerDados() {
-        // função para preencher o nó com uma pergunta
-
-        No.inserir(16, "O time pertence ao eixo Rio/São Paulo?");
-
-        // Linha 2
-        No.inserir(8, "O time já ganhou a copa Libertadores da América?");
-        No.inserir(24, "Já ganhou mundial?");
-
-        // linha 3
-        No.inserir(4, "Seu uniforme é tricolor?");
-        No.inserir(12, "Seu uniforme tem a cor azul?");
-        No.inserir(20, "Seu uniforme é preto e branco?");
-        No.inserir(28, "è tri campeão da Libertadores da América?");
-
-        // linha 4
-        No.inserir(2, "Foi campeão da Sul Americana?");
-        No.inserir(6, "É Bi campeão do Campeonato Brasileiro?");
-        No.inserir(10, "Jogou a serie B do campeonato Brasileiro 2017?");
-        No.inserir(14, "É o maior campeão da copa do Brasil?");
-        No.inserir(18, "É o maior campeão do campeonato Brasileiro?");
-        No.inserir(22, "Jogou Roberto Dinamite?");
-        No.inserir(26, " Tem a maior torcida do Brasil?");
-        No.inserir(30, "Jogou o rei do Futebol?");
-
-        // Ultima linha
-        No.inserir(1, "Avaí");
-        No.inserir(3, "Chapecoense!");
-        No.inserir(5, "Fortaleza");
-        No.inserir(7, "Bahia");
-        No.inserir(9, "Atletico Mineiro");
-        No.inserir(11, "Internacional");
-        No.inserir(13, "Grêmio");
-        No.inserir(15, "Cruzeiro");
-        No.inserir(17, "Fluminense");
-        No.inserir(19, "Palmeiras");
-        No.inserir(21, "Botofogo");
-        No.inserir(23, "Vasco");
-        No.inserir(25, "Corinthias");
-        No.inserir(27, "Flamengo");
-        No.inserir(29, "São Paulo");
-        No.inserir(31, "Santos ");
-    }
-}
+    
+   }
