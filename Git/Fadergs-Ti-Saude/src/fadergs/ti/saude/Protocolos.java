@@ -1,12 +1,12 @@
 package fadergs.ti.saude;
 
 public class Protocolos {
-	 //Essa função simula uma leitura de dados salvos previamente
+	 //Essa método simula uma leitura de dados salvos previamente
     public static void lerDados() {
         // função para preencher o nó com uma pergunta
     	
     	//primeira pergunta
-        No.inserir(16, "A criança está com tosse ou\r\n" + 
+        No.inserir(16, "A criança está com tosse ou \n" + 
         		"dificuldade para respirar?\n");
 
         // Linha 2
@@ -75,7 +75,8 @@ public class Protocolos {
       //pergunta 28 - resposta 30 sim
 
         // Ultima linha
-        //a espaço para mais respostas
+        //a espaço para mais respost
+       // System.out.println("Protocolo incluido com sucesso");
         }
 
 }

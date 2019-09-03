@@ -11,7 +11,21 @@ public class No {
     public static No raiz;
     private static Scanner scan;
 
-    public No() {
+    
+    
+    public String getConteudo() {
+		return conteudo;
+	}
+    
+    public No getNoEsquerdo() {
+    	return this.esquerda;
+    }
+    
+    public No getNoDireito() {
+    	return this.direita;
+    }
+    
+	public No() {
     }
 
     public No(int valor) {
@@ -24,6 +38,7 @@ public class No {
     }
 
     public static void inserir(int valor, String info) {
+    	 
         inserir(raiz, valor, info);
     }
 
@@ -139,6 +154,21 @@ public class No {
                 programa(node.direita);
             } else {
                 programa(node.esquerda);
+            }
+        }
+    }
+    
+    public static No programaTela(No node, boolean esc) {
+        if (node.esquerda == null && node.direita == null)  // teste se o nó é folha, sendo assim resposta final
+        {
+            return node;
+            
+        } else {
+            System.out.println(node.conteudo);
+            if (esc) {
+             return (node.direita);
+            } else {
+             return (node.esquerda);
             }
         }
     }
